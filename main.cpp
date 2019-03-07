@@ -6,6 +6,7 @@ using namespace std;
 
 int main()
 {
+	/** Queue Testing
 	GenQueue myQueue(10);
 
 	myQueue.insert('J');
@@ -23,6 +24,7 @@ int main()
 	{
 		cout << "removing: " << myQueue.remove() << endl;
 	}
+	**/
 
 	return 0;
 }
