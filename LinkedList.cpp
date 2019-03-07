@@ -9,8 +9,8 @@ class ListNode
     ListNode();
     ListNode(int d);
     ~ListNode();
-    int data;
-    ListNode *next;
+    int data; //data of this node
+    ListNode *next; //pointer to next node
 }
 
 //Implementation

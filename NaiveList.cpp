@@ -1,3 +1,7 @@
+#include <iostream>
+
+using namespace std;
+
 //Declaration
 class NaiveList
 {
@@ -20,13 +24,10 @@ class NaiveList
     unsigned int size;
 }
 
-Naive::NaiveList()
+Naive::NaiveList() //blank linkedlist
 {
-  //Create a new blank list
   size = 0;
   front = NULL;
-
-
 }
 
 NaiveList::~NaiveList()
@@ -50,38 +51,38 @@ void NaiveList::printList()
 
 void NaiveList::insertFront(int data)
 {
-  ListNode *node = new ListNode(data);
-  node->next = front;
-  front = node;
-  size++;
+  ListNode *node = new ListNode(data); //create new node with data
+  node -> next = front; //current node's next node (node.next) points to front
+  front = node;  //the new node is now the front node
+  size++; //increase size
 }
 
 int NaiveList::removeFront()
 {
-  int temp = front->data;
-  ListNode *ft = front;
-  front = front->next;
-  ft->next = NULL;
-  delete ft;
-  size--;
-  return temp;
+  int temp = front->data;	//temp = current/front node's data
+  ListNode *ft = front;		//save current node
+  front = front->next;		//change front to next node
+  ft->next = NULL;		//set front.set to not point to anything
+  delete ft;			//delete ft, it's been allocated
+  size--;			//decrease linkedlist size
+  return temp;			//return front.data
 }
 
 int NaiveList::find(int value)
 {
   int index = -1;
-  ListNode *current = front;
+  ListNode *current = front; //current = front node
 
   while(current != NULL)
   {
-    ++index;
-    if(current-> data == value)
+    ++index; //increase index
+    if(current-> data == value) //if current.data = value
     {
       break;
     }
     else
     {
-      current = current->next;
+      current = current->next;	//set current = next node
     }
   }
 
