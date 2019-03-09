@@ -1,11 +1,22 @@
 #include <iostream>
-#include "GenQueue.h"
-#include "GenStack.h"
+//#include "GenQueue.h"
+//#include "GenStack.h"
+#include "LinkedList.h"
 
 using namespace std;
 
 int main()
 {
+	/** LinkedList Testing **/
+	NaiveList ll;
+	ll.insertFront(4);
+	ll.insertFront(3);
+	ll.insertFront(2);
+	ll.insertFront(1);
+
+	ll.printList();
+
+
 	/** Queue Testing
 	GenQueue myQueue(10);
 
