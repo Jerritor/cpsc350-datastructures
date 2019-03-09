@@ -87,19 +87,17 @@ int NaiveList::find(int value)
   {
     ++index; //increase index
     if(current-> data == value) //if current.data = value
-    {
       break;
-    }
     else
-    {
       current = current->next;	//set current = next node
-    }
   }
   return index;
 }
 
 int NaiveList::deletePosition(int position) //assuming the list exists, returns the deleted data
 {
+  if (position >= getSize())
+    return -1;
   int index = 0; //prev's index is -1, current is 1
 
   //checks to make sure there's at least one node

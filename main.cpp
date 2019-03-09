@@ -9,11 +9,21 @@ int main()
 {
 	/** LinkedList Testing **/
 	NaiveList ll;
+
+	cout << "Inserting 4,3,2,1..." << endl;
 	ll.insertFront(4);
 	ll.insertFront(3);
 	ll.insertFront(2);
 	ll.insertFront(1);
 
+	cout << "Index of 3: " << ll.find(3) << endl;
+	cout << "Removing: " << ll.removeFront() << endl;
+	cout << "Peeking: " << ll.peek() << endl;
+	cout << "Removing: " << ll.removeFront() << endl;
+
+	cout << "Deleting Index 2...:" << ll.deletePosition(2) << endl;
+
+	cout << "Printing Remaining" << endl;
 	ll.printList();
 
 
