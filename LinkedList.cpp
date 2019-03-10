@@ -7,8 +7,8 @@ using namespace std;
 
 ListNode::ListNode()
 {
-  //data = 0
-  //next = NULL;
+  data = -1;
+  next = NULL;
 }
 
 ListNode::ListNode(int d)
@@ -29,20 +29,18 @@ NaiveList::NaiveList() //blank linkedlist
 
 NaiveList::~NaiveList()
 {
-  while (!isEmpty())
-  {
-    removeFront();
-  }
+  while (!isEmpty()) removeFront();
 }
 
 void NaiveList::insertFront(int data)
 {
-  ListNode *node = new ListNode(data); //create new node with data
+  ListNode *node = new ListNode; //create new node with data
+  node -> data = data;
   if (size == 0)
     front = node;
   else
   {
-    node -> data = data; //setting node.data = data
+    //node -> data = data; //setting node.data = data
     node -> next = front; //current node's next pointer (node.next) points to front node
     front = node;  //the new node is now the front node
   }
@@ -94,33 +92,44 @@ int NaiveList::find(int value)
   return index;
 }
 
-int NaiveList::deletePosition(int position) //assuming the list exists, returns the deleted data
+int NaiveList::deletePosition(int position) //returns the deleted data
 {
-  if (position >= getSize())
+  //if position is within size boundaries and list exists
+  if (position >= getSize() || position < 0 || isEmpty())
     return -1;
-  int index = 0; //prev's index is -1, current is 1
+  //if (position == 0) return removeFront();
+
+  int index = 0; //prev's index is -1, current is 0
 
   //checks to make sure there's at least one node
-  ListNode *current = front; //current node = front node
   ListNode *previous = front; //previous node = front node
+  ListNode *current = front; //current node = front node
 
+  for(int i = 0; i < position; i++)
+  {
+    previous = current; //stay back?
+    current = current->next; //current node = next node;
+  }
+
+  /**
   while (index != position)
   {
     previous = current; //stay back?
     current = current->next; //current node = next node;
-    ++index; //increment index
-  }
+    index++; //increment index
+  }**/
 
   //when we find the correct position, update pointers
 
   previous->next = current->next;	//prev's next pointer point's at current's next pointer. skips current
   //if postion = 0, this means nothing
 
+  front = front -> next;
   current->next = NULL; //delete current.next pointer
+
   int temp = current->data; //save current data
   delete current; //delete current node
   size--; //decrease size by one
-
   return temp; //return the deleted node's data
 }
 
