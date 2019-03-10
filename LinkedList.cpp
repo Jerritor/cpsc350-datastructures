@@ -97,7 +97,7 @@ int NaiveList::deletePosition(int position) //returns the deleted data
   //if position is within size boundaries and list exists
   if (position >= getSize() || position < 0 || isEmpty())
     return -1;
-  //if (position == 0) return removeFront();
+  if (position == 0) return removeFront();
 
   int index = 0; //prev's index is -1, current is 0
 
@@ -124,7 +124,6 @@ int NaiveList::deletePosition(int position) //returns the deleted data
   previous->next = current->next;	//prev's next pointer point's at current's next pointer. skips current
   //if postion = 0, this means nothing
 
-  front = front -> next;
   current->next = NULL; //delete current.next pointer
 
   int temp = current->data; //save current data

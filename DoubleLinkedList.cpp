@@ -2,65 +2,26 @@
 
 using namespace std;
 
-//Declaration
-class ListNode
-{
-  public:
-    ListNode();
-    ListNode(int d);
-    ~ListNode();
-
-    int data; //data of this node
-    ListNode *next; //pointer to next node
-    ListNode *prev; //pointer to previous node
-}
-
-class DoublyLinkedList
-{
-  public:
-    NaiveList();
-    ~NaiveList();
-    void insertFront(int data);
-    void printList();
-    void insertBack(int d);
-
-    int removeFront();
-    int find(int value); //aka search()
-    int deletePosition(int position);
-
-    bool isEmpty();
-    unsigned int getSize();
-  private:
-    ListNode *front;
-    unsigned int size;
-}
-
-//Implementation
+//===Node Implementation===
 ListNode::ListNode()
 {
   next = NULL;
-  front = NULL;
-  back = NULL;
+  prev = NULL;
+  data = -1;
 }
 
 ListNode::ListNode(int d)
 {
   data = d;
   next = NULL;
+  prev = NULL;
 }
 
-ListNode::~ListNode()
-{
-  //Figure this one out on your own?
-}
+ListNode::~ListNode() { } //nothing to deallocate?
 
-//////////
-unsigned int NaiveList::getSize()
-{
-  return size;
-}
+//===LinkedList Implementation===
 
-void NaiveList::printList()
+void DoublyLinkedList::printList()
 {
   while (current //this is a boolean check)
   {
@@ -69,7 +30,7 @@ void NaiveList::printList()
   }
 }
 
-void NaiveList::insertFront(int data)
+void DoublyLinkedList::insertFront(int data)
 {
   ListNode *node = new ListNode(data); //create new node with data
   if (size == 0)
@@ -83,7 +44,7 @@ void NaiveList::insertFront(int data)
   size++; //increase size
 }
 
-void NaiveList::insertBack(int data)
+void DoublyLinkedList::insertBack(int data)
 {
 	ListNode *node = new ListNode(data); //create new node with data
 	if (size == 0)
@@ -97,7 +58,7 @@ void NaiveList::insertBack(int data)
         size++; //increase size
 }
 
-int NaiveList::removeFront()
+int DoublyLinkedList::removeFront()
 {
   int temp = front->data;	//temp = current/front node's data
   ListNode *ft = front;		//save current node
@@ -108,7 +69,7 @@ int NaiveList::removeFront()
   return temp;			//return front.data
 }
 
-int NaiveList::find(int value)
+int DoublyLinkedList::find(int value)
 {
   int index = -1;
   ListNode *current = front; //current = front node
@@ -134,7 +95,7 @@ int NaiveList::find(int value)
   return index;
 }
 
-int NaiveList::deletePosition(int position) //assuming the list exists, returns the deleted data
+int DoublyLinkedList::deletePosition(int position) //assuming the list exists, returns the deleted data
 {
   int index = 0;
   //add a check to make sure position is valid.
@@ -160,7 +121,7 @@ int NaiveList::deletePosition(int position) //assuming the list exists, returns 
 }
 
 //assuming a node of integers
-NaiveList::insertBack(int d)
+DoublyLinkedList::insertBack(int d)
 {
 	++size;
 	ListNode *node = new ListNode(d); //allocate a new node
@@ -174,4 +135,9 @@ NaiveList::insertBack(int d)
 		back -> next = node;
 		back = node;
 	}
+}
+
+unsigned int DoublyLinkedList::getSize() const
+{
+  return size;
 }
