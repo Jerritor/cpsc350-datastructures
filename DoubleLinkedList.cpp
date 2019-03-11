@@ -1,13 +1,14 @@
 #include <iostream>
+#include "DoubleLinkedList.h"
 
 using namespace std;
 
 //===Node Implementation===
 ListNode::ListNode()
 {
+  data = -1;
   next = NULL;
   prev = NULL;
-  data = -1;
 }
 
 ListNode::ListNode(int d)
@@ -17,24 +18,27 @@ ListNode::ListNode(int d)
   prev = NULL;
 }
 
-ListNode::~ListNode() { } //nothing to deallocate?
+ListNode::~ListNode() { }
 
-//===LinkedList Implementation===
+//===Double LinkedList Implementation===
 
-void DoublyLinkedList::printList()
+DoublyLinkedList::DoublyLinkedList()
 {
-  while (current //this is a boolean check)
-  {
-    cout << current-> data << endl;
-    current = current -> next;
-  }
+  size = 0;
+  front = NULL;
+  back = NULL;
+}
+
+DoublyLinkedList::~DoublyLinkedList()
+{
+  while (!isEmpty()) removeFront();
 }
 
 void DoublyLinkedList::insertFront(int data)
 {
   ListNode *node = new ListNode(data); //create new node with data
   if (size == 0)
-    back = front;
+    back = node;
   else
   {
     front -> prev = node;
@@ -46,27 +50,65 @@ void DoublyLinkedList::insertFront(int data)
 
 void DoublyLinkedList::insertBack(int data)
 {
-	ListNode *node = new ListNode(data); //create new node with data
-	if (size == 0)
-          front = node;
-        else
-        {
-	  back -> next = node;
-	  node -> prev = back;
-        }
-        back = node;  //the new node is now the front node
-        size++; //increase size
+  ListNode *node = new ListNode(data); //create new node with data
+  if (size == 0)
+  {
+    front = node;
+  }
+  else
+  {
+    back -> next = node;
+    node -> prev = back;
+  }
+  back = node;  //the new node is now the front node
+  size++; //increase size
+}
+
+void DoublyLinkedList::printList()
+{
+  ListNode *current = front;
+  while (current) //this is a boolean check
+  {
+    cout << current-> data << endl;
+    current = current -> next;
+  }
+}
+
+const int NaiveList::peek() const
+{
+  return front -> data;
 }
 
 int DoublyLinkedList::removeFront()
 {
   int temp = front->data;	//temp = current/front node's data
-  ListNode *ft = front;		//save current node
+  ListNode *ft = front;		//save head
+
   front = front->next;		//change front to next node
-  ft->next = NULL;		//set front.set to not point to anything
+
+  front-> prev = NULL;
+  ft->prev = NULL;
+  ft->next = NULL;		//set ft.next to not point to anything
+
   delete ft;			//delete ft, it's been allocated
   size--;			//decrease linkedlist size
   return temp;			//return front.data
+}
+
+int DoublyLinkedList::removeBack()
+{
+  int temp = back->data;
+  ListNode *bk = back;
+
+  back = back->prev;
+
+  back->next = NULL;
+  bk->next = NULL;
+  bk->prev = NULL;
+
+  delete bk;
+  size--;
+  return temp;
 }
 
 int DoublyLinkedList::find(int value)
@@ -77,64 +119,53 @@ int DoublyLinkedList::find(int value)
   while(current != NULL)
   {
     ++index; //increase index
-    if(current-> data == value) //if current.data = value
-    {
-      break;
-    }
+    if(current->data == value) //if current.data = value
+      return index;
     else
-    {
       current = current->next;	//set current = next node
-    }
   }
-
-  if(current == NULL)
-  {
-    index = -1;
-  }
-
-  return index;
+  return -1;
 }
 
 int DoublyLinkedList::deletePosition(int position) //assuming the list exists, returns the deleted data
 {
-  int index = 0;
-  //add a check to make sure position is valid.
-  ListNode *current = front; //current node = front node
-  ListNode *previous = front; //previous node = front node
-  //current,previous = front
+  //invalid conditions
+  if (position >= getSize() || position < 0 || isEmpty())
+    return -1;
 
-  while (index != position)
+  if (position == 0)
+    return removeFront();
+  else if (position == getSize()-1)
+    return removeBack();
+
+  int index = 0;
+  //checks to make sure there's at least one node
+  ListNode *previous = front; //previous node = front node
+  ListNode *current = front; //current node = front node
+
+  //loops position-1 times. prev = remove.prev, curr = node to be removed
+  for(int i = 0; i < position; i++)
   {
     previous = current; //stay back?
     current = current->next; //current node = next node;
-    ++index; //increment index
   }
 
   //when we find the correct position, update pointers
-  prev->next = current->next; //previous node.next = current.next
+  previous->next = current->next; //sets previous node's.next address to current.next
+  current->next->prev = previous; //sets next.prev's node to previous
+
   current->next = NULL; //delete current.next pointer
+  current->prev = NULL; //delete current.prev pointer
   int temp = current->data; //save current data
+
   delete current; //delete current
   size--; //decrease size by one
-
   return temp; //return the deleted node's data
 }
 
-//assuming a node of integers
-DoublyLinkedList::insertBack(int d)
+bool DoublyLinkedList::isEmpty() const
 {
-	++size;
-	ListNode *node = new ListNode(d); //allocate a new node
-
-	if (front == NULL) //if head is null
-	{
-		front = back;
-	}
-	else
-	{
-		back -> next = node;
-		back = node;
-	}
+  return front == NULL;
 }
 
 unsigned int DoublyLinkedList::getSize() const

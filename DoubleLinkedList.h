@@ -1,6 +1,10 @@
+#pragma once
 #include <iostream>
 
 using namespace std;
+
+#ifndef DOUBLELINKEDLIST_H
+#define DOUBLELINKEDLIST_H
 
 //Declaration
 class ListNode
@@ -18,14 +22,15 @@ class ListNode
 class DoublyLinkedList
 {
   public:
-    NaiveList();
-    ~NaiveList();
+    DoublyLinkedList();
+    ~DoublyLinkedList();
     void insertFront(int data);
-	void insertBack(int d);
+    void insertBack(int data);
     void printList();
 
-	const int peek() const;
+    const int peek() const;
     int removeFront();
+    int removeBack();
     int find(int value); //aka search() - returns index
     int deletePosition(int position);
 
@@ -33,6 +38,8 @@ class DoublyLinkedList
     unsigned int getSize() const;
   private:
     ListNode *front;
-	ListNode *back;
+    ListNode *back;
     unsigned int size;
 };
+
+#endif //DOUBLELINKEDLIST_H
