@@ -105,9 +105,9 @@ int DoublyLinkedList::removeBack()
 
   back = back->prev;
 
-  back->next = NULL;
-  bk->next = NULL;
-  bk->prev = NULL;
+  back->next = NULL;	//deallocating back.next
+  bk->next = NULL;	//deallocating bk.next
+  bk->prev = NULL;	//deallocating bk.prev
 
   delete bk;
   size--;
