@@ -3,9 +3,9 @@
 
 using namespace std;
 
-#ifndef DOUBLELINKEDLIST_H
-#define DOUBLELINKEDLIST_H
-
+#ifndef LISTNODE_D //_D stands for double
+#ifndef LISTNODE_S
+#define LISTNODE_D
 //Declaration
 class ListNode
 {
@@ -18,7 +18,11 @@ class ListNode
     ListNode *next; //pointer to next node
     ListNode *prev; //pointer to previous node
 };
+#endif //LISTNODE
+#endif //LISTNODE
 
+#ifndef DOUBLELINKEDLIST_H
+#define DOUBLELINKEDLIST_H
 class DoublyLinkedList
 {
   public:
@@ -41,5 +45,4 @@ class DoublyLinkedList
     ListNode *back;
     unsigned int size;
 };
-
 #endif //DOUBLELINKEDLIST_H

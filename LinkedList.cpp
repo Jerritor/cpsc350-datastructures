@@ -5,19 +5,19 @@ using namespace std;
 
 //===Node Implementation===
 
-ListNode::ListNode()
+inline ListNode::ListNode()
 {
   data = -1;
   next = NULL;
 }
 
-ListNode::ListNode(int d)
+inline ListNode::ListNode(int d)
 {
   data = d;
   next = NULL;
 }
 
-ListNode::~ListNode() { } //nothing to deallocate?
+inline ListNode::~ListNode() { } //nothing to deallocate?
 
 //===LinkedList Implementation===
 

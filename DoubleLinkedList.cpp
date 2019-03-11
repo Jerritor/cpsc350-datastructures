@@ -4,21 +4,21 @@
 using namespace std;
 
 //===Node Implementation===
-ListNode::ListNode()
+inline ListNode::ListNode()
 {
   data = -1;
   next = NULL;
   prev = NULL;
 }
 
-ListNode::ListNode(int d)
+inline ListNode::ListNode(int d)
 {
   data = d;
   next = NULL;
   prev = NULL;
 }
 
-ListNode::~ListNode() { }
+inline ListNode::~ListNode() { }
 
 //===Double LinkedList Implementation===
 
@@ -67,14 +67,17 @@ void DoublyLinkedList::insertBack(int data)
 void DoublyLinkedList::printList()
 {
   ListNode *current = front;
-  while (current) //this is a boolean check
+  while (current->next != NULL) //this is a boolean check
   {
+	cout << (current->next != NULL) << " ";
     cout << current-> data << endl;
     current = current -> next;
   }
+  cout << (current->next != NULL) << " ";
+  cout << current-> data << endl;
 }
 
-const int NaiveList::peek() const
+const int DoublyLinkedList::peek() const
 {
   return front -> data;
 }

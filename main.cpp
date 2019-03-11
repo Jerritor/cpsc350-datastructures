@@ -2,9 +2,7 @@
 //#include "GenQueue.h"
 //#include "GenStack.h"
 //#include "LinkedList.h"
-#ifndef DOUBLELINKEDLIST_H
 #include "DoubleLinkedList.h"
-#endif
 
 using namespace std;
 
