@@ -166,6 +166,30 @@ int DoublyLinkedList::deletePosition(int position) //assuming the list exists, r
   return temp; //return the deleted node's data
 }
 
+ListNode* DoublyLinkedList::remove(int key)
+{
+	LostNode *curr = front;
+	while (curr->data != key)
+	{
+		curr = curr->next;
+		if (!curr) return NULL;
+	}
+	if (curr == front)
+		front = curr->next;
+	else
+		curr->prev->next = curr->next;
+	if (curr == back)
+        	back = curr->next;
+	else
+		curr->next->prev = curr->prev;
+
+	curr->next = NULL;
+	curr->prev = NULL;
+	size--;
+	return curr; //returns curr w/o prev & next pointers
+	//curr doesn't actually get deallocated here
+}
+
 bool DoublyLinkedList::isEmpty() const
 {
   return front == NULL;

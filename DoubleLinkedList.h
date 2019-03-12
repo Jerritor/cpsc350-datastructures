@@ -37,6 +37,7 @@ class DoublyLinkedList
     int removeBack();
     int find(int value); //aka search() - returns index
     int deletePosition(int position);
+    ListNode* remove(int key); //key = value to find
 
     bool isEmpty() const;
     unsigned int getSize() const;
