@@ -29,7 +29,7 @@ GenStack::~GenStack() //default constructor
 void GenStack::push(char d)
 {
 	//check if stack is full or not empty
-	if (size != top && size > 0)
+	if (size-1 != top && size > 0)
 	{
 		myArray[++top] = d; //top is pre-incremented to start at 0
 	}

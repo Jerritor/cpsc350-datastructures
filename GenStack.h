@@ -19,7 +19,7 @@ class GenStack
 
 		int size; //current size of stack
 		int top; //top index of stack
-
+	private:
 		//dynamic memory allocation - size will be initialized at instantiation
 		char *myArray;
 };

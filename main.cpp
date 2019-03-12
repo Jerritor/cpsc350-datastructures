@@ -2,13 +2,14 @@
 //#include "GenQueue.h"
 //#include "GenStack.h"
 //#include "LinkedList.h"
-#include "DoubleLinkedList.h"
+//#include "DoubleLinkedList.h"
+#include "NodeStack.h"
 
 using namespace std;
 
 int main()
 {
-	/** Doubly LinkedList Testing**/
+	/** Doubly LinkedList Testing
 	DoublyLinkedList dll;
 
 	dll.insertFront(3);
@@ -30,6 +31,7 @@ int main()
 
 	cout << "Printing Remaining" << endl;
 	dll.printList();
+	**/
 
 	/** LinkedList Testing
 	NaiveList ll;
@@ -66,6 +68,25 @@ int main()
 	ll.printList();
 	**/
 
+	/** Queue Testing
+	GenQueue myQueue(10);
+
+	myQueue.insert('J');
+	myQueue.insert('E');
+	myQueue.insert('R');
+	myQueue.insert('R');
+	myQueue.insert('I');
+	myQueue.insert('C');
+	myQueue.insert('K');
+
+	cout << "removing: " << myQueue.remove() << endl;
+	cout << "peeking: " << myQueue.front() << endl;
+
+	while (!myQueue.isEmpty())
+	{
+		cout << "removing: " << myQueue.remove() << endl;
+	}
+	**/
 
 	/** Queue Testing
 	GenQueue myQueue(10);
@@ -86,6 +107,27 @@ int main()
 		cout << "removing: " << myQueue.remove() << endl;
 	}
 	**/
+
+	/** Stack Testing **/
+	//GenStack myStack(10); //array-stack of size 10
+	NodeStack myStack(10); //array-stack with '10' as first element
+
+	myStack.push('J');
+	myStack.push('E');
+	myStack.push('R');
+	myStack.push('R');
+	myStack.push('I');
+	myStack.push('C');
+	myStack.push('K');
+
+	cout << "popping: " << myStack.pop() << endl;
+	cout << "peeking: " << myStack.peek() << endl;
+
+	while (!myStack.isEmpty())
+	{
+		cout << "popping: " << myStack.pop() << endl;
+	}
+
 
 	return 0;
 }
