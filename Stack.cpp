@@ -1,9 +1,9 @@
 #include <iostream>
-#include "GenStack.h"
+#include "Stack.h"
 
 using namespace std;
 
-GenStack::GenStack() //default constructor
+Stack::Stack() //default constructor
 {
 	//initialize variables to default values
 
@@ -14,19 +14,19 @@ GenStack::GenStack() //default constructor
 
 }
 
-GenStack::GenStack(int maxSize) //overloaded constructor
+Stack::Stack(int maxSize) //overloaded constructor
 {
 	myArray = new char[maxSize];
 	size = maxSize;
 	top = -1;
 }
 
-GenStack::~GenStack() //default constructor
+Stack::~Stack() //default constructor
 {
 	delete myArray; //deallocates myArray from heap memory
 }
 
-void GenStack::push(char d)
+void Stack::push(char d)
 {
 	//check if stack is full or not empty
 	if (size-1 != top && size > 0)
@@ -35,7 +35,7 @@ void GenStack::push(char d)
 	}
 }
 
-char GenStack::pop()
+char Stack::pop()
 {
 	if (!isEmpty()) //check if empty
 	{
@@ -48,22 +48,22 @@ char GenStack::pop()
 		return myArray[top--];
 }
 
-char GenStack::peek()
+char Stack::peek()
 {
 	return myArray[top];
 }
 
-bool GenStack::isFull()
+bool Stack::isFull()
 {
 	return (top == size-1);
 }
 
-bool GenStack::isEmpty()
+bool Stack::isEmpty()
 {
 	return (top == -1);
 }
 
-int GenStack::getSize()
+int Stack::getSize()
 {
 	return top+1; //+1 bc top initialized as -1
 }

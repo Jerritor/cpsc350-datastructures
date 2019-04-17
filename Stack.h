@@ -2,12 +2,12 @@
 
 using namespace std;
 
-class GenStack
+class Stack
 {
 	public:
-		GenStack(); //constructor
-		GenStack(int maxSize); //overloaded constructor
-		~GenStack(); //destructor
+		Stack(); //constructor
+		Stack(int maxSize); //overloaded constructor
+		~Stack(); //destructor
 
 		void push(char d); //add to top of stack
 		char pop();  //remove and return top of stack

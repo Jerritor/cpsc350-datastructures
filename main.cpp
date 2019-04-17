@@ -109,10 +109,11 @@ int main()
 	**/
 
 	/** Stack Testing **/
-	//GenStack myStack(10); //array-stack of size 10
-	NodeStack myStack(10); //array-stack with '10' as first element
+	//GenStack myStack(10); //char array-stack of size 10
+	NodeStack myStack('J'); //char array-stack with '9' as first element
 
-	myStack.push('J');
+	cout << "Inserting: J,E,R,R,I,C,K" << endl;
+	//myStack.push('J');
 	myStack.push('E');
 	myStack.push('R');
 	myStack.push('R');
@@ -120,8 +121,10 @@ int main()
 	myStack.push('C');
 	myStack.push('K');
 
-	cout << "popping: " << myStack.pop() << endl;
+	cout << "stack size: " << myStack.getSize() << endl;
 	cout << "peeking: " << myStack.peek() << endl;
+	cout << "stack size: " << myStack.getSize() << endl;
+	cout << "popping: " << myStack.pop() << endl;
 
 	while (!myStack.isEmpty())
 	{
